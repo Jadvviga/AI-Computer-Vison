@@ -3,7 +3,7 @@ import tensorflow as tf
 import os
 import numpy as np
 import math
-
+import utils
 
 class DataGenerator(tf.keras.utils.Sequence):
     def __init__(self, img_dir_path,
@@ -15,7 +15,7 @@ class DataGenerator(tf.keras.utils.Sequence):
                  do_augmentation=False,
                  do_shuffling=False):
         self.img_dir_path = img_dir_path
-        self.labels_dict = self.import_labels(labels_file_path)
+        self.labels_dict = utils.import_labels(labels_file_path)
         self.filenames_list = list(self.labels_dict.keys())
 
         self.batch_size = batch_size
@@ -57,18 +57,6 @@ class DataGenerator(tf.keras.utils.Sequence):
             X, Y = X[permutation], Y[permutation]
 
         return X, Y
-
-    @staticmethod
-    def import_labels(label_file):
-        labels = dict()
-
-        import csv
-        with open(label_file) as fd:
-            csvreader = csv.DictReader(fd)
-
-            for row in csvreader:
-                labels[row['filename']] = int(row['label'])
-        return labels
 
     def load_files(self, batch_index):
         # assumes correct batch index

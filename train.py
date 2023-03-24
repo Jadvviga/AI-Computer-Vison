@@ -30,5 +30,5 @@ if __name__ == '__main__':
                                                      do_augmentation=False)
     model = model.makeModel2(INPUT_SHAPE)
 
-    model.fit(data_generator_train, validation_data=data_generator_test, epochs=30)
-    model.save(f"models/model1_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5")
+    model.fit(data_generator_train, validation_data=data_generator_test, epochs=1)
+    model.save(f"models/model_name_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5")
