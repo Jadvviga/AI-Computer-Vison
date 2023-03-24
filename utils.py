@@ -36,7 +36,8 @@ def import_labels(label_file):
     with open(label_file) as fd:
         csvreader = csv.DictReader(fd)
         for row in csvreader:
-            labels[row['filename']] = int(row['label'])
+            labels[row['filename']] = int(row['label']) - 1
+            # modifies range of classes from 1, 103 to 0,102
     return labels
 
 if __name__ == '__main__':
