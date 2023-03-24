@@ -19,11 +19,9 @@ if __name__ == '__main__':
 
     input_shape = utils.model_filename_parse_dimension(model_filename)
 
-    test_labels = data_gen_new.DataGenerator.import_labels(LABELS_TEST)
-    train_labels = data_gen_new.DataGenerator.import_labels(LABELS_TRAIN)
+    test_labels = utils.import_labels(LABELS_TEST)
+    train_labels = utils.import_labels(LABELS_TRAIN)
     
-
-    print('here1')
 
     data_generator_train = data_gen_new.DataGenerator(img_dir_path=IMAGES_TRAIN_PATH,
                                                       labels_file_path=LABELS_TRAIN,
@@ -43,9 +41,7 @@ if __name__ == '__main__':
                                                      do_shuffling=False,
                                                      do_augmentation=False)
 
-    print('here2')
-    model = tf.keras.models.load_model(filepath='models/model1_notshuffled.h5')
-    print('here3')
+    model = tf.keras.models.load_model(filepath=os.path.join(MODELS_PATH,model_filename))
     model.evaluate(x=data_generator_train, verbose=2)
 
     
@@ -63,7 +59,6 @@ if __name__ == '__main__':
     x = list(np.array(y_predict))
     print(x)
     #for some fuking reason it eauther doent work beacous of
-    #a. the probelm with batches described earlier
     #b. even if i put porper #of batches, its throws error that it read 103 classes instead of 102
     report = classification_report(y_true=list(test_labels.values()), y_pred=y_predict, target_names=target_names)
 
