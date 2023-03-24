@@ -4,6 +4,7 @@ import os
 import tensorflow as tf
 import numpy as np
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
+import matplotlib
 
 if __name__ == '__main__':
     LABELS_TEST = "data/test_labels.csv"
@@ -58,3 +59,10 @@ if __name__ == '__main__':
     report = classification_report(y_true=list(labels_test.values()), y_pred=y_predict, target_names=target_names)
 
     print(report)
+
+
+    # confiusion matrix
+    cm = confusion_matrix(list(labels_test.values()), y_predict)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels='')
+    disp.plot()
+    matplotlib.pyplot.show()
