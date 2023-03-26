@@ -9,7 +9,7 @@ if __name__ == '__main__':
     IMAGES_TEST_PATH = "data/test"
     IMAGES_TRAIN_PATH = "data/train"
 
-    INPUT_SHAPE = (50, 50, 3)
+    INPUT_SHAPE = (100, 100, 3)
 
     labels_train = utils.import_labels(LABELS_TRAIN)
     labels_test = utils.import_labels(LABELS_TEST)
@@ -31,7 +31,7 @@ if __name__ == '__main__':
                                                      img_preprocessing_func=None,
                                                      do_shuffling=False,
                                                      do_augmentation=False)
-    model = model.makeModel2(INPUT_SHAPE)
+    model = model.makeModel(INPUT_SHAPE)
 
-    model.fit(data_generator_train, validation_data=data_generator_test, epochs=1)
+    model.fit(data_generator_train, validation_data=data_generator_test, epochs=5)
     model.save(f"models/testing_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5")
