@@ -1,5 +1,6 @@
 import os
 import csv
+import matplotlib.pyplot as plt
 
 def choose_file_to_load(folder_path):
     """
@@ -39,6 +40,35 @@ def import_labels(label_file):
             labels[row['filename']] = int(row['label']) - 1
             # modifies range of classes from 1, 103 to 0,102
     return labels
+
+def make_plots_from_history(history, model_filename):
+    """
+    Plots history of a trained model. Show the plots and saves them to pngs with model_filename
+    """
+
+    METRICS_PATH = "metrics/plots"
+
+    # Accuracy plot
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
+    plt.legend(('Training Accuracy', 'Validation accuracy'))
+    plt.ylabel('Accuracy')
+    plt.xlabel('Number of Epochs')
+    
+    plot_filename = "plot_accuracy_" + os.path.splitext(model_filename)[0] + ".png"
+    plt.savefig(os.path.join(METRICS_PATH, plot_filename))
+    plt.show()
+
+    # Loss plot
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.legend(('Training Loss', 'Validation Loss'))
+    plt.ylabel('Loss')
+    plt.xlabel('Number of Epochs')
+    
+    plot_filename = "plot_loss_" + os.path.splitext(model_filename)[0] + ".png"
+    plt.savefig(os.path.join(METRICS_PATH, plot_filename))
+    plt.show()
 
 if __name__ == '__main__':
     model_filename_parse_dimension("model_1.sr_model_sth_325_300.hp")

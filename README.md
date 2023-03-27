@@ -2,12 +2,17 @@
 Computer Vision project for AI classes
 
 For it to work there need to be local folders:
- 1) Data
-    ->Test
-    ->Train
+ 1) data
+    ->data/test
+    ->data/train
     test_labels.csv
     train_labels.csv
 (folder storing data - images - and csv with labels)
 
-2) Models
-(folder for string saved models, as .h5 files)
+2) models
+(folder for storing saved models, as .h5 files)
+
+3) metrics
+   ->metrics/plots
+   ->metrics/reports
+(folder for storing saved plots, reports etc)
