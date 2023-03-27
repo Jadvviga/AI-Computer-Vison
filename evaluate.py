@@ -16,7 +16,7 @@ if __name__ == '__main__':
     IMAGES_TRAIN_PATH = "data/train"
 
     MODELS_PATH = "models"
-    METRICS_PATH = "metrics"
+    REPORTS_PATH = "metrics/reports"
 
     model_filename = utils.choose_file_to_load(MODELS_PATH)
 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     pprint.pprint(report)
 
     report_filename = "clfreport_" + os.path.splitext(model_filename)[0] + ".json"
-    with open(os.path.join(METRICS_PATH, report_filename), "w") as outfile:
+    with open(os.path.join(REPORTS_PATH, report_filename), "w") as outfile:
         json.dump(report, outfile, indent=2)
 
     # confiusion matrix

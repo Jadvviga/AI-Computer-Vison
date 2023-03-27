@@ -10,6 +10,8 @@ if __name__ == '__main__':
     IMAGES_TEST_PATH = "data/test"
     IMAGES_TRAIN_PATH = "data/train"
 
+    PLOTS_PATH = "metrics/plots"
+
     INPUT_SHAPE = (224, 224, 3)
 
     labels_train = utils.import_labels(LABELS_TRAIN)
@@ -40,6 +42,6 @@ if __name__ == '__main__':
     model_filename = f"testing_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
     model.save(f"models/{model_filename}")
 
-    utils.make_plots_from_history(history, model_filename)
+    utils.make_plots_from_history(history,PLOTS_PATH, model_filename)
 
     

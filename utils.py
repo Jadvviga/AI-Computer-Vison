@@ -41,13 +41,10 @@ def import_labels(label_file):
             # modifies range of classes from 1, 103 to 0,102
     return labels
 
-def make_plots_from_history(history, model_filename):
+def make_plots_from_history(history, plots_path, model_filename):
     """
     Plots history of a trained model. Show the plots and saves them to pngs with model_filename
     """
-
-    METRICS_PATH = "metrics/plots"
-
     # Accuracy plot
     plt.plot(history.history['accuracy'])
     plt.plot(history.history['val_accuracy'])
@@ -56,7 +53,7 @@ def make_plots_from_history(history, model_filename):
     plt.xlabel('Number of Epochs')
     
     plot_filename = "plot_accuracy_" + os.path.splitext(model_filename)[0] + ".png"
-    plt.savefig(os.path.join(METRICS_PATH, plot_filename))
+    plt.savefig(os.path.join(plots_path, plot_filename))
     plt.show()
 
     # Loss plot
@@ -67,7 +64,7 @@ def make_plots_from_history(history, model_filename):
     plt.xlabel('Number of Epochs')
     
     plot_filename = "plot_loss_" + os.path.splitext(model_filename)[0] + ".png"
-    plt.savefig(os.path.join(METRICS_PATH, plot_filename))
+    plt.savefig(os.path.join(plots_path, plot_filename))
     plt.show()
 
 if __name__ == '__main__':
