@@ -66,3 +66,5 @@ if __name__ == '__main__':
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot(include_values=False, xticks_rotation='vertical')
     matplotlib.pyplot.show()
+    print('test')
+
