@@ -16,3 +16,6 @@ For it to work there need to be local folders:
    ->metrics/plots
    ->metrics/reports
 (folder for storing saved plots, reports etc)
+
+![obraz](https://user-images.githubusercontent.com/22338369/227930028-9a83292a-0212-450c-b3d9-39036e6c548f.png)
+
