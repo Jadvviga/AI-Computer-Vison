@@ -17,6 +17,7 @@ if __name__ == '__main__':
 
     MODELS_PATH = "models"
     REPORTS_PATH = "metrics/reports"
+    CONFUSION_MATRIX_PATH = "metrics/confusion_matrix"
 
     model_filename = utils.choose_file_to_load(MODELS_PATH)
 
@@ -55,14 +56,17 @@ if __name__ == '__main__':
                                    y_pred=y_predict_argmax,
                                    target_names=target_names,
                                    output_dict=True)
-    pprint.pprint(report)
+    #pprint.pprint(report)
 
     report_filename = "clfreport_" + os.path.splitext(model_filename)[0] + ".json"
     with open(os.path.join(REPORTS_PATH, report_filename), "w") as outfile:
         json.dump(report, outfile, indent=2)
 
     # confiusion matrix
+    cm_filename = "ConfusionMatrix_" + os.path.splitext(model_filename)[0] + ".png"
     cm = confusion_matrix(list(labels_test.values()), y_predict_argmax)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot(include_values=False, xticks_rotation='vertical')
+    matplotlib.pyplot.savefig(os.path.join(CONFUSION_MATRIX_PATH, cm_filename))
     matplotlib.pyplot.show()
+
