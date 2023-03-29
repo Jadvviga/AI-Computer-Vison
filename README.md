@@ -1,8 +1,6 @@
 # AI-Computer-Vison
 Computer Vision project for AI classes
 
-Push Test Github
-
 For it to work there need to be local folders:
  1) data
     ->data/test
