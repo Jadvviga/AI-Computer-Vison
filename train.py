@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     callback = tf.keras.callbacks.EarlyStopping(monitor='val_accuracy', min_delta=0.0001, patience=5, restore_best_weights=True)
 
-    history = model.fit(data_generator_train, validation_data=data_generator_test, epochs=5)
+    history = model.fit(data_generator_train, validation_data=data_generator_test, callbacks=[callback] epochs=5)
     model_filename = f"testing_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
     model.save(f"models/{model_filename}")
 

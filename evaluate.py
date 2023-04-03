@@ -45,7 +45,6 @@ if __name__ == '__main__':
                                                      do_augmentation=False)
 
     model = tf.keras.models.load_model(filepath=os.path.join(MODELS_PATH, model_filename))
-    # model.evaluate(x=data_generator_test, verbose=2)
 
     y_predict = model.predict(x=data_generator_test)
     y_predict_argmax = tf.argmax(input=y_predict, axis=1)
