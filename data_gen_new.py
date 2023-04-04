@@ -8,7 +8,7 @@ import utils
 class DataGenerator(tf.keras.utils.Sequence):
     def __init__(self, img_dir_path,
                  labels_dict,
-                 batch_size=25,
+                 batch_size=32,
                  target_dim=(224, 224),
                  img_preprocessing_func=None,
                  arr_preprocessing_func=None,

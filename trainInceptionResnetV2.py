@@ -2,7 +2,7 @@ import data_gen_new
 import model
 import utils
 import tensorflow as tf
-from tensorflow.keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.applications.inception_resnet_v2 import preprocess_input
 from tensorflow.keras.layers import Input, Flatten, Dense
 
 if __name__ == '__main__':
@@ -23,7 +23,7 @@ if __name__ == '__main__':
                                                       labels_dict=labels_train,
                                                       batch_size=32,
                                                       target_dim=INPUT_SHAPE[:2],
-                                                      arr_preprocessing_func=preprocess_input, #preprocessing for VGG16
+                                                      arr_preprocessing_func=preprocess_input, #preprocessing for inception_resnet_v2
                                                       img_preprocessing_func=None,
                                                       do_shuffling=False,
                                                       do_augmentation=False)
@@ -32,12 +32,12 @@ if __name__ == '__main__':
                                                      labels_dict=labels_test,
                                                      batch_size=32,
                                                      target_dim=INPUT_SHAPE[:2],
-                                                     arr_preprocessing_func=preprocess_input, #preprocessing for VGG16
+                                                     arr_preprocessing_func=preprocess_input, #preprocessing for inception_resnet_v2
                                                      img_preprocessing_func=None, 
                                                      do_shuffling=False,
                                                      do_augmentation=False)
     
-    base_model = model.makeBaseModelVGG16(INPUT_SHAPE)
+    base_model = model.makeBaseModelInceptionResNetV2(INPUT_SHAPE)
     
     for layer in base_model.layers:
         layer.trainable = False
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     callback = tf.keras.callbacks.EarlyStopping(monitor='val_accuracy', min_delta=0.0001, patience=5, restore_best_weights=True)
 
     history = model.fit(data_generator_train, validation_data=data_generator_test, callbacks=[callback], epochs=10)
-    model_filename = f"VGG16_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
+    model_filename = f"Inception_Resnet_V2_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
     model.save(f"models/{model_filename}")
 
     utils.make_plots_from_history(history,PLOTS_PATH, model_filename)
