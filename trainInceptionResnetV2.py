@@ -55,6 +55,8 @@ if __name__ == '__main__':
     #unfreeze last 20 layers
     #restnet
     #50 Epochs
+    #Add Dropout Layers 0.5
+    #GlobalAveragePooling instead of flatten
     
     model.compile(
     optimizer='adam',
