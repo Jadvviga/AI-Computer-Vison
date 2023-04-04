@@ -51,6 +51,10 @@ if __name__ == '__main__':
     model = tf.keras.Model(inputs, outputs)
 
     loss_fun = tf.keras.losses.CategoricalCrossentropy()
+
+    #unfreeze last 20 layers
+    #restnet
+    #50 Epochs
     
     model.compile(
     optimizer='adam',
