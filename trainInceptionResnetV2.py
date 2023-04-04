@@ -26,7 +26,7 @@ if __name__ == '__main__':
                                                       arr_preprocessing_func=preprocess_input, #preprocessing for inception_resnet_v2
                                                       img_preprocessing_func=None,
                                                       do_shuffling=False,
-                                                      do_augmentation=False)
+                                                      do_augmentation=True)
 
     data_generator_test = data_gen_new.DataGenerator(img_dir_path=IMAGES_TEST_PATH,
                                                      labels_dict=labels_test,
