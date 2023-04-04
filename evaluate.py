@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     data_generator_train = data_gen_new.DataGenerator(img_dir_path=IMAGES_TRAIN_PATH,
                                                       labels_dict=labels_train,
-                                                      batch_size=25,
+                                                      batch_size=32,
                                                       target_dim=input_shape,
                                                       arr_preprocessing_func=None,
                                                       img_preprocessing_func=None,
@@ -55,7 +55,7 @@ if __name__ == '__main__':
                                    y_pred=y_predict_argmax,
                                    target_names=target_names,
                                    output_dict=True)
-    # pprint.pprint(report)
+    pprint.pprint(report)
 
     report_filename = "clfreport_" + os.path.splitext(model_filename)[0] + ".json"
     with open(os.path.join(REPORTS_PATH, report_filename), "w") as outfile:

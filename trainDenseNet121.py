@@ -61,7 +61,7 @@ if __name__ == '__main__':
     callback = tf.keras.callbacks.EarlyStopping(monitor='val_accuracy', min_delta=0.0001, patience=5, restore_best_weights=True)
 
     history = model.fit(data_generator_train, validation_data=data_generator_test, callbacks=[callback], epochs=10)
-    model_filename = f"Inception_Resnet_V2_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
+    model_filename = f"DenseNet121_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
     model.save(f"models/{model_filename}")
 
     utils.make_plots_from_history(history,PLOTS_PATH, model_filename)
