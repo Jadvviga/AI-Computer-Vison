@@ -6,6 +6,7 @@ import numpy as np
 import pprint
 import json
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
+from tensorflow.keras.applications.inception_resnet_v2 import preprocess_input
 import matplotlib
 
 if __name__ == '__main__':
@@ -30,7 +31,7 @@ if __name__ == '__main__':
                                                       labels_dict=labels_train,
                                                       batch_size=32,
                                                       target_dim=input_shape,
-                                                      arr_preprocessing_func=None,
+                                                      arr_preprocessing_func=preprocess_input,
                                                       img_preprocessing_func=None,
                                                       do_shuffling=False,
                                                       do_augmentation=False)
@@ -39,7 +40,7 @@ if __name__ == '__main__':
                                                      labels_dict=labels_test,
                                                      batch_size=25,
                                                      target_dim=input_shape,
-                                                     arr_preprocessing_func=None,
+                                                     arr_preprocessing_func=preprocess_input,
                                                      img_preprocessing_func=None,
                                                      do_shuffling=False,
                                                      do_augmentation=False)

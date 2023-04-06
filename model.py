@@ -65,7 +65,7 @@ def makeBaseModelVGG19(input_shape):
     return model
 
 def makeBaseModelInceptionResNetV2(input_shape):
-    #simple VGG16 stump as described in https://keras.io/api/applications/inceptionresnetv2/
+    #simple InceptionResNetV2 stump as described in https://keras.io/api/applications/inceptionresnetv2/
     model = tf.keras.applications.inception_resnet_v2.InceptionResNetV2(
     include_top=False,
     weights="imagenet",
@@ -77,7 +77,7 @@ def makeBaseModelInceptionResNetV2(input_shape):
     return model
 
 def makeBaseModelDenseNet121(input_shape):
-    #simple VGG16 stump as described in https://keras.io/api/applications/densenet/
+    #simple DenseNet121 stump as described in https://keras.io/api/applications/densenet/
     model = tf.keras.applications.densenet.DenseNet121(
     include_top=False,
     weights="imagenet",
