@@ -3,7 +3,7 @@ import model
 import utils
 import tensorflow as tf
 from tensorflow.keras.applications.inception_resnet_v2 import preprocess_input
-from tensorflow.keras.layers import Input, Flatten, Dense, GlobalAveragePooling2D, Dropout
+from tensorflow.keras.layers import Input, Flatten, Dense, GlobalAveragePooling2D, Dropout, Conv2D, MaxPooling2D, BatchNormalization
 
 if __name__ == '__main__':
     LABELS_TEST = "data/test_labels.csv"
@@ -42,8 +42,10 @@ if __name__ == '__main__':
     for layer in base_model.layers:
         layer.trainable = False
 
-    for layer in base_model.layers[-30:]:
-        layer.trainable = True # Dann anderschrum
+    for layer in base_model.layers[-50:]:
+        layer.trainable = True 
+
+    #TODO: Make Data Augmentation more fancy
 
     inputs = Input(shape=(224, 224, 3))
     x = base_model(inputs, training=False)
@@ -53,6 +55,8 @@ if __name__ == '__main__':
     outputs = Dense(102, activation='softmax')(x)
 
     model = tf.keras.Model(inputs, outputs)
+
+    model.summary()
 
     loss_fun = tf.keras.losses.CategoricalCrossentropy()
     
@@ -65,7 +69,7 @@ if __name__ == '__main__':
     callback = tf.keras.callbacks.EarlyStopping(monitor='val_accuracy', min_delta=0.0001, patience=5, restore_best_weights=True)
 
     history = model.fit(data_generator_train, validation_data=data_generator_test, callbacks=[callback], epochs=30)
-    model_filename = f"Updated_Inception_Resnet_V2_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
+    model_filename = f"Updated_2_Inception_Resnet_V2_model_{INPUT_SHAPE[0]}_{INPUT_SHAPE[1]}.h5"
     model.save(f"models/{model_filename}")
 
     utils.make_plots_from_history(history,PLOTS_PATH, model_filename)
