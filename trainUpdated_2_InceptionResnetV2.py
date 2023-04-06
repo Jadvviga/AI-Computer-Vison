@@ -45,8 +45,6 @@ if __name__ == '__main__':
     for layer in base_model.layers[-50:]:
         layer.trainable = True 
 
-    #TODO: Make Data Augmentation more fancy
-
     inputs = Input(shape=(224, 224, 3))
     x = base_model(inputs, training=False)
     x = GlobalAveragePooling2D()(x)
