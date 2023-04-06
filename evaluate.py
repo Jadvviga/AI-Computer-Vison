@@ -6,7 +6,7 @@ import numpy as np
 import pprint
 import json
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
-from tensorflow.keras.applications.inception_resnet_v2 import preprocess_input
+from tensorflow.keras.applications.vgg16 import preprocess_input
 import matplotlib
 
 if __name__ == '__main__':
