@@ -6,7 +6,10 @@ import numpy as np
 import pprint
 import json
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
-from tensorflow.keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.applications.vgg16 import preprocess_input as preprocess_input_vgg16
+from tensorflow.keras.applications.vgg19 import preprocess_input as preprocess_input_vgg19
+from tensorflow.keras.applications.inception_resnet_v2 import preprocess_input as preprocess_input_inceptionresnet_v2
+from tensorflow.keras.applications.densenet import preprocess_input as preprocess_input_densenet121
 import matplotlib
 
 if __name__ == '__main__':
@@ -31,7 +34,7 @@ if __name__ == '__main__':
                                                       labels_dict=labels_train,
                                                       batch_size=32,
                                                       target_dim=input_shape,
-                                                      arr_preprocessing_func=preprocess_input,
+                                                      arr_preprocessing_func=preprocess_input_vgg16,
                                                       img_preprocessing_func=None,
                                                       do_shuffling=False,
                                                       do_augmentation=False)
@@ -40,7 +43,7 @@ if __name__ == '__main__':
                                                      labels_dict=labels_test,
                                                      batch_size=25,
                                                      target_dim=input_shape,
-                                                     arr_preprocessing_func=preprocess_input,
+                                                     arr_preprocessing_func=preprocess_input_vgg16,
                                                      img_preprocessing_func=None,
                                                      do_shuffling=False,
                                                      do_augmentation=False)
@@ -55,6 +58,7 @@ if __name__ == '__main__':
     report = classification_report(y_true=list(labels_test.values()),
                                    y_pred=y_predict_argmax,
                                    target_names=target_names,
+                                   digits=2,
                                    output_dict=True)
     pprint.pprint(report)
 
